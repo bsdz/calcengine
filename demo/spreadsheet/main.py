@@ -958,6 +958,7 @@ class Window(QMainWindow):
         self.restoreGeometry(settings.value("geometry"))
         self.restoreState(settings.value("windowState"))
 
+
 def main(args):
     # file = Path(__file__).parent / "samples/pandas.json"
 
