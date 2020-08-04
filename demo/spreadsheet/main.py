@@ -46,6 +46,7 @@ from PyQt5.QtCore import (
     pyqtSlot,
     QThread,
     QByteArray,
+    QSettings,
 )
 import PIL.Image
 from PIL.ImageQt import ImageQt
@@ -750,12 +751,14 @@ class Window(QMainWindow):
 
         self.text_editor = CodeEditor()
         self.text_editor_dock = QDockWidget("Code Editor", self)
+        self.text_editor_dock.setObjectName("CodeEditor")
         self.text_editor_dock.setAllowedAreas(Qt.RightDockWidgetArea)
         self.text_editor_dock.setWidget(self.text_editor)
         self.addDockWidget(Qt.RightDockWidgetArea, self.text_editor_dock)
 
         self.console_panel = ConsolePanel()
         self.console_panel_dock = QDockWidget("Console", self)
+        self.console_panel_dock.setObjectName("Console")
         self.console_panel_dock.setAllowedAreas(Qt.RightDockWidgetArea)
         self.console_panel_dock.setWidget(self.console_panel)
         self.addDockWidget(Qt.RightDockWidgetArea, self.console_panel_dock)
@@ -783,6 +786,7 @@ class Window(QMainWindow):
         self.stderr_queue_thread.start()
 
         self.toolbar = QToolBar("Main toolbar")
+        self.toolbar.setObjectName("MainToolbar")
         self.toolbar.setIconSize(QSize(16, 16))
         self.toolbar.setToolButtonStyle(Qt.ToolButtonTextUnderIcon)
 
@@ -844,6 +848,8 @@ class Window(QMainWindow):
 
         self.status_bar = QStatusBar(self)
         self.setStatusBar(self.status_bar)
+
+        self.read_settings()
 
         # event filter needs to be in top level thread
         self.main_grid.installEventFilter(self.main_grid)
@@ -941,6 +947,16 @@ class Window(QMainWindow):
         if "grid_state" in file_data:
             self.main_grid.state = file_data["grid_state"]
 
+    def closeEvent(self, event):
+        settings = QSettings("BlairAzzopardi", "SimpleSpreadSheet")
+        settings.setValue("geometry", self.saveGeometry())
+        settings.setValue("windowState", self.saveState())
+        super().closeEvent(event)
+
+    def read_settings(self):
+        settings = QSettings("BlairAzzopardi", "SimpleSpreadSheet")
+        self.restoreGeometry(settings.value("geometry"))
+        self.restoreState(settings.value("windowState"))
 
 def main(args):
     # file = Path(__file__).parent / "samples/pandas.json"
