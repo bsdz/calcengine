@@ -133,9 +133,11 @@ got 206
 809
 ```
 
-## Demo
+## Demo application
 
 Included is a simple spreadsheet demo. Read more [here](./demo/spreadsheet/README.md)
+
+![Demo animation](./demo/spreadsheet/demo.gif)
 
 ## To do
 

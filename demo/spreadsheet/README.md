@@ -20,6 +20,10 @@ fill down (Control + D) and fill right (Control + R).
 
 Files can be saved as JSON and calculated values are serialized if possible.
 
+## Demo
+
+![Animation of spreadsheet](demo.gif)
+
 ## Features
 
 * Open / save as JSON format.

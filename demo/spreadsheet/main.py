@@ -854,6 +854,9 @@ class Window(QMainWindow):
         # event filter needs to be in top level thread
         self.main_grid.installEventFilter(self.main_grid)
 
+        # clear all sets up namespace
+        self.clear_all()
+
     def set_title(self, label=None):
         self.setWindowTitle("Simple Spreadsheet" + (f" - {label}" if label else ""))
 
