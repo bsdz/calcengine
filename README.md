@@ -153,6 +153,15 @@ Included is a simple spreadsheet demo. Read more [here](./demo/spreadsheet/READM
 
 ![Demo animation](./demo/spreadsheet/demo.gif)
 
+## Installation
+
+To install the dependencies required by the demo. When cloning this repo also include the "demo" extras.
+
+```bash
+poetry install -E demo
+python demo/spreadsheet/main.py
+```
+
 ## To do
 
 * Support watching global variables.
