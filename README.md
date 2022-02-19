@@ -7,10 +7,24 @@ A simple lazy Python Calculation Engine.
 The module is still in development. You can install it by cloning this repository and using the [poetry install](https://python-poetry.org/docs/cli/#install) command.
 
 ```bash
+git clone git@github.com:bsdz/calcengine.git
+cd calcengine
+python3 -mvenv --prompt calceng .venv
+. ./.venv/bin/activate
+poetry install
+```
+
+Alternatively, you can add to your existing poetry project:
+
+```bash
 poetry add git+https://github.com/bsdz/calcengine.git
 ```
 
-Alternatively, you can use pip install -r requirements.txt. This was generated using [poetry export](https://python-poetry.org/docs/cli/#export) without hashes option.
+Or install via pip:
+
+```bash
+pip install git+https://github.com/bsdz/calcengine.git#master
+```
 
 ## Core Dependencies
 
@@ -138,6 +152,15 @@ got 206
 Included is a simple spreadsheet demo. Read more [here](./demo/spreadsheet/README.md)
 
 ![Demo animation](./demo/spreadsheet/demo.gif)
+
+## Installation
+
+To install the dependencies required by the demo. When cloning this repo also include the "demo" extras.
+
+```bash
+poetry install -E demo
+python demo/spreadsheet/main.py
+```
 
 ## To do
 
