@@ -58,6 +58,14 @@ Obviously there's lots to do. Here are a few things that would be very useful.
 * Undo / redo.
 
 
+## Setup
+
+Either install the demo extras using poetry:
+
+    poetry install --no-interaction --no-ansi --extras "demo"
+
+or run the corresponding Dockerfile (see .vscode folder launc.json and tasks.json for more information).
+
 ## similar packages
 
 Some similar packages spotted. None of them tested.

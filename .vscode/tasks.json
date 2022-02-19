@@ -1,0 +1,34 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "docker-build",
+			"label": "docker-build: spreadsheet",
+			"platform": "python",
+			"dockerBuild": {
+				"tag": "calcengine:latest",
+				"dockerfile": "${workspaceFolder}/demo/spreadsheet/Dockerfile",
+				"context": "${workspaceFolder}",
+				"pull": true,
+				"buildArgs": {
+					"APT_CACHE_PROXY_URL": "${config:docker_build_args.APT_CACHE_PROXY_URL}",
+					"PIP_INDEX_URL": "${config:docker_build_args.PIP_INDEX_URL}",
+					"PIP_TRUSTED_HOST": "${config:docker_build_args.PIP_TRUSTED_HOST}",
+				}
+			}
+		},
+		{
+			"type": "docker-run",
+			"label": "docker-run: spreadsheet debug",
+			"dependsOn": [
+				"docker-build: spreadsheet"
+			],
+			"dockerRun": {
+				"customOptions": "--net=host --env=\"DISPLAY\" --volume=\"$HOME/.Xauthority:/home/worker/.Xauthority:rw\""
+			  },
+			"python": {
+				"file": "demo/spreadsheet/main.py"
+			}
+		}
+	]
+}

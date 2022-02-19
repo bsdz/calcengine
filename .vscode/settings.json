@@ -1,5 +1,4 @@
 {
-    "python.pythonPath": "/home/blair/projects/calcengine/.venv/bin/python3.8",
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
     "python.linting.mypyEnabled": true,
@@ -13,7 +12,6 @@
         "test_*.py"
     ],
     "python.testing.pytestEnabled": false,
-    "python.testing.nosetestsEnabled": false,
     "python.testing.unittestEnabled": true,
     "files.exclude": {
         "**/.git": true,

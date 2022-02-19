@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/demo/spreadsheet/main.py",
             "console": "integratedTerminal",
-            "justMyCode": false,
+            "justMyCode": false
         },
         {
             "name": "Spreadsheet Tests",
@@ -24,7 +24,7 @@
             "type": "python",
             "request": "launch",
             "module": "tests.test_base",
-            "justMyCode": false,
+            "justMyCode": false
         },
         {
             "name": "Python: Current File",
@@ -32,6 +32,22 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal"
+        },
+        {
+            "name": "Spreadsheet - Docker",
+            "type": "docker",
+            "request": "launch",
+            "preLaunchTask": "docker-run: spreadsheet debug",
+            "python": {
+                "pathMappings": [
+                    {
+                        "localRoot": "${workspaceFolder}",
+                        "remoteRoot": "/app"
+                    }
+                ],
+                "projectType": "general"
+            }
         }
     ]
+    
 }

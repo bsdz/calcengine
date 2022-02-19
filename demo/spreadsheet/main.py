@@ -58,7 +58,7 @@ try:
     import matplotlib.pyplot as mpl
 
     warnings.filterwarnings(
-        "ignore", category=matplotlib.cbook.deprecation.MatplotlibDeprecationWarning
+        "ignore", category=matplotlib.cbook.MatplotlibDeprecationWarning
     )
     HAS_MATPLOTLIB = True
 except:  # noqa
@@ -958,8 +958,10 @@ class Window(QMainWindow):
 
     def read_settings(self):
         settings = QSettings("BlairAzzopardi", "SimpleSpreadSheet")
-        self.restoreGeometry(settings.value("geometry"))
-        self.restoreState(settings.value("windowState"))
+        if settings.value("geometry"):
+            self.restoreGeometry(settings.value("geometry"))
+        if settings.value("windowState"):
+            self.restoreState(settings.value("windowState"))
 
 
 def main(args):
