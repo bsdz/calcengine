@@ -1,0 +1,19 @@
+{
+	"name": "network-demo",
+	"dockerComposeFile": [
+		"../docker-compose.yml",
+		"./docker-compose.yml"
+	],
+	"service": "conductor",
+	"workspaceFolder": "/workspace",
+	"settings": {
+		"terminal.integrated.shell.linux": null
+	},
+	"extensions": [
+		"ms-python.python",
+		"ms-python.vscode-pylance",
+		"ms-azuretools.vscode-docker",
+	],
+	"shutdownAction": "none",
+	"remoteUser": "worker"
+}

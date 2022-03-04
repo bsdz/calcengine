@@ -1,0 +1,9 @@
+version: '3'
+services:
+      
+  conductor:
+    volumes:
+      - .:/workspace:cached
+      - ../../calcengine:/app/calcengine
+    command: /bin/sh -c "while sleep 1000; do :; done"
+

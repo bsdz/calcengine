@@ -1,0 +1,52 @@
+version: '3'
+
+# https://hub.docker.com/_/postgres
+# https://hashinteractive.com/blog/docker-compose-up-with-postgres-quick-tips/
+# TODO: move data volume to different directory (defaults to /var/lib/docker/volumes/)
+
+# https://hub.docker.com/_/python
+
+# core-crawler is shared crawler infrastructure. This is to reduce repeated traffic to
+# same hosts. A web API (eg REST) will allow querying the cache.
+
+# instancex is per client containers. Each instance stores own copies of documents.
+
+
+
+services:
+  python3-base:
+    container_name: python3-base
+    image: scanner-python3-base
+    profiles: ["never_run"]
+    build: 
+      context: ../../../
+      dockerfile: ./demo/network/.devcontainer/python3-base.Dockerfile
+      args:
+        - APT_CACHE_PROXY_URL=http://mlrig:3142
+        - PIP_INDEX_URL=http://mlrig:3141/root/pypi/+simple/
+        - PIP_TRUSTED_HOST=mlrig
+    command: echo hello
+
+
+  conductor:
+    container_name: conductor
+    # TODO: specifying start up profile prevents vscode connecting
+    # profiles: ["on_demand"]
+    # command: echo "image only used on demand"
+    build:
+      context: ../../
+      dockerfile: ./demo/network/conductor.Dockerfile
+      args:
+        - VENV_NAME=conductor
+
+  drone-1:
+    container_name: drone-1
+    # profiles: ["on_demand"]
+    # command: echo "image only used on demand"
+    build:
+      context: ../../
+      dockerfile: ./demo/network/drone.Dockerfile
+      args:
+        - VENV_NAME=drone-1
+    depends_on: 
+      - conductor
